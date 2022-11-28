@@ -9,9 +9,6 @@ pipeline {
         stage('Run Tests pipeline_1') {
             parallel {
                 stage('Test On Windows') {
-                    agent {
-                        label "windows"
-                    }
                     steps {
                         echo 'for example bat "run-tests.bat"'
                     }
@@ -22,9 +19,6 @@ pipeline {
                     }
                 }
                 stage('Test On Linux') {
-                    agent {
-                        label "linux"
-                    }
                     steps {
                         echo 'sh "run-tests.sh"'
                     }
