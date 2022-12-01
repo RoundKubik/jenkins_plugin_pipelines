@@ -1,20 +1,27 @@
+#!/usr/bin/env groovy
 pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('stage one') {
             steps {
-                echo 'Building..'
+                script {
+                    tags_extra = "value_1"
+                }
+                echo "tags_extra: ${tags_extra}"
             }
         }
-        stage('Test') {
+        stage('stage two') {
             steps {
-                echo 'Testing..'
+                echo "tags_extra: ${tags_extra}"
             }
         }
-        stage('Deploy') {
+        stage('stage three') {
+            when {
+                expression { tags_extra != 'bla' }
+            }
             steps {
-                echo 'Deploying....'
+                echo "tags_extra: ${tags_extra}"
             }
         }
     }
